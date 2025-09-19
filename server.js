@@ -29,7 +29,16 @@ app.post("/api/work_experiences", (req, res) => {
         return; // Om felmeddelande stoppa koden
     } 
 
-    res.json({message: "Work experiences added"});
+    // Objekt
+    let work = {
+        companyname: companyname,
+        jobtitle: jobtitle,
+        location: location,
+        startdate: startdate,
+        enddate: enddate
+    }
+
+    res.json({message: "Work experiences added", work}); // Skicka med objekt om korrekt skickad data
 });
 
 // Uppdatera
