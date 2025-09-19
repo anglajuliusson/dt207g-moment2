@@ -16,6 +16,16 @@ app.get("/api/work_experiences", (req, res) => {
 
 // Addera
 app.post("/api/work_experiences", (req, res) => {
+    let companyname = req.body.companyname;
+    let jobtitle = req.body.jobtitle;
+    let location = req.body.location;
+    let startdate = req.body.startdate;
+    let enddate = req.body.enddate;
+
+    if ( !companyname || !jobtitle || !location || !startdate || !enddate ) { // Kontroll att allt skickas med
+        res.json({error: "Alla uppgifter måste skickas med!"}) // Felmeddelande om någon information saknas
+    }
+
     res.json({message: "Work experiences added"});
 });
 
