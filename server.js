@@ -20,7 +20,11 @@ app.post("/api/work_experiences", (req, res) => {
 });
 
 app.put("/api/work_experiences/:id", (req, res) => {
-    res.json({message: "Work experiences updated:" + req.parmans.id});
+    res.json({message: "Work experiences updated: " + req.parmans.id});
+});
+
+app.delete("/api/work_experiences/:id", (req, res) => {
+    res.json({message: "Work experiences deleted: " + req.params.id});
 });
 
 app.listen(port, () => {
