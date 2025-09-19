@@ -23,8 +23,25 @@ app.post("/api/work_experiences", (req, res) => {
     let startdate = req.body.startdate;
     let enddate = req.body.enddate;
 
+    // error handling
+    let errors = {
+        message: "",
+        detail: "",
+        http_response: {
+
+        }
+    };
+
     if ( !companyname || !jobtitle || !location || !startdate || !enddate ) { // Kontroll att allt skickas med
-        res.status(400).json({error: "Alla uppgifter måste skickas med!"}); // Felmeddelande om någon information saknas och status 400
+        // error messages
+        errors.message = "Companyname, jobtitle, location, startdate and enddate not included";
+        errors.detail = "You must include companyname, jobtitle, location, startdate and enddate in JSON";
+
+        // respone code
+        errors.http_response.message = "Bad Request";
+        errors.http_response.code = 400;
+
+        res.status(400).json(errors);
 
         return; // Om felmeddelande stoppa koden
     } 
