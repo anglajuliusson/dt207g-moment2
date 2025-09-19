@@ -11,18 +11,17 @@ app.get("/api/work_experiences", (req, res) => {
     res.json({message: "Get work experiences"});
 });
 
-app.get("/api/work_experiences", (req, res) => {
-    res.json({message: "Get work experiences"});
-});
-
+// Addera
 app.post("/api/work_experiences", (req, res) => {
     res.json({message: "Work experiences added"});
 });
 
+// Uppdatera
 app.put("/api/work_experiences/:id", (req, res) => {
     res.json({message: "Work experiences updated: " + req.parmans.id});
 });
 
+// Radera
 app.delete("/api/work_experiences/:id", (req, res) => {
     res.json({message: "Work experiences deleted: " + req.params.id});
 });
