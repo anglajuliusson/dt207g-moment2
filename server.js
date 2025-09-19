@@ -3,6 +3,8 @@ const cors = requre('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(cors()); // Inkludera cors i express-applikationen
+
 // Routes
 app.get("/api", (req, res) => {
     res.json({message: "Welcome to my API"});
