@@ -19,6 +19,10 @@ app.post("/api/work_experiences", (req, res) => {
     res.json({message: "Work experiences added"});
 });
 
+app.put("/api/work_experiences/:id", (req, res) => {
+    res.json({message: "Work experiences updated:" + req.parmans.id});
+});
+
 app.listen(port, () => {
     console.log('Server is running on port: ' + port);
 });
