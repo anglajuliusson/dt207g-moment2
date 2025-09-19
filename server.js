@@ -18,7 +18,7 @@ app.post("/api/work_experiences", (req, res) => {
 
 // Uppdatera
 app.put("/api/work_experiences/:id", (req, res) => {
-    res.json({message: "Work experiences updated: " + req.parmans.id});
+    res.json({message: "Work experiences updated: " + req.params.id});
 });
 
 // Radera
