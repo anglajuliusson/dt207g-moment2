@@ -11,6 +11,14 @@ app.get("/api/work_experiences", (req, res) => {
     res.json({message: "Get work experiences"});
 });
 
+app.get("/api/work_experiences", (req, res) => {
+    res.json({message: "Get work experiences"});
+});
+
+app.post("/api/work_experiences", (req, res) => {
+    res.json({message: "Work experiences added"});
+});
+
 app.listen(port, () => {
     console.log('Server is running on port: ' + port);
 });
