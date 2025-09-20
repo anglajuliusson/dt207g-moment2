@@ -32,7 +32,17 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/api/work_experiences", (req, res) => {
-    res.json({message: "Get work experiences"});
+    
+    // Get work experinces
+    connection.query('SELECT * FROM works;', (err, results) => {
+        if (err) {
+            res.status(500).json({error: "Something went wrong: " + err});
+
+            return; // Om felmeddelande stoppa koden
+        }
+
+        console.log(results); // Skriv ut lagrade värden i tabellen
+    });
 });
 
 // Addera
