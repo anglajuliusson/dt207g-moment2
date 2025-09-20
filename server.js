@@ -6,6 +6,22 @@ require('dotenv').config(); // Inkludera env variabler
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Anslutning till databas
+const connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE
+});
+
+connection.connect((err) => {
+    if (err) {
+        console.log("Connection failed: " + err);
+    }
+
+    console.log("Connected to database");
+});
+
 app.use(cors()); // Inkludera cors i express-applikationen
 app.use(express.json()); // Sidan ska kunna ta emot JSON-data
 
