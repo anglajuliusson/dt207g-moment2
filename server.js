@@ -1,6 +1,6 @@
 const express =  require('express');
 const cors = require('cors'); // Inkludera cors
-const mysql = require('mysql'); // Inkludera mysql
+const mysql = require('mysql2'); // Inkludera mysql
 require('dotenv').config(); // Inkludera env variabler
 
 const app = express();
@@ -17,8 +17,8 @@ const connection = mysql.createConnection({
 connection.connect((err) => {
     if (err) {
         console.log("Connection failed: " + err);
+        return; // Om felmeddelande stoppa koden
     }
-    return; // Om felmeddelande stoppa koden
 
     console.log("Connected to database");
 });
