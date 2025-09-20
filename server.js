@@ -1,6 +1,8 @@
 const express =  require('express');
 const cors = require('cors'); // Inkludera cors
 const mysql = require('mysql'); // Inkludera mysql
+require('dotenv').config(); // Inkludera env variabler
+
 const app = express();
 const port = process.env.PORT || 3000;
 
