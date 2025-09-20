@@ -18,6 +18,7 @@ connection.connect((err) => {
     if (err) {
         console.log("Connection failed: " + err);
     }
+    return; // Om felmeddelande stoppa koden
 
     console.log("Connected to database");
 });
