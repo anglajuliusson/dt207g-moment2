@@ -42,6 +42,11 @@ app.get("/api/work_experiences", (req, res) => {
         }
 
         console.log(results); // Skriv ut lagrade värden i tabellen
+        if (results.length === 0) {
+            res.status(200).json({message: "No work experiences found"}); // Om tom tabell
+        } else {
+            res.json(results); // Skriv ut tabellens innehåll om det finns
+        }
     });
 });
 
