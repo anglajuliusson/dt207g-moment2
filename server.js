@@ -81,7 +81,16 @@ app.post("/api/work_experiences", (req, res) => {
         return; // Om felmeddelande stoppa koden
     } 
 
-    // Objekt
+    // Add work experience to database
+    connection.query('INSERT INTO works(companyname, jobtitle, location, startdate, enddate) VALUES (?, ?, ?, ?, ?);', [companyname, jobtitle, location, startdate, enddate], (err, results) => {
+        if (err) {
+            res.status(500).json({error: "Something went wrong: " + err});
+
+            return; // Om felmeddelande stoppa koden
+        }
+
+        console.log("Fråga skapad: " + results);
+            // Objekt
     let work = {
         companyname: companyname,
         jobtitle: jobtitle,
@@ -91,6 +100,7 @@ app.post("/api/work_experiences", (req, res) => {
     }
 
     res.json({message: "Work experiences added", work}); // Skicka med objekt om korrekt skickad data
+    });
 });
 
 // Uppdatera
