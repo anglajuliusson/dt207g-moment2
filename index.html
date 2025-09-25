@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV-API</title>
+</head>
+<body>
+    <h1>Sida för att testa API</h1>
+
+    <script>
+        getData();
+
+        async function getData() {
+            const response = await fetch("http://127.0.0.1:3000/api/work_experiences")
+
+            const data = await response.json();
+
+            console.table(data);
+        }
+    </script>
+</body>
+</html>
