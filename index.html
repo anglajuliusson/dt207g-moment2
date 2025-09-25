@@ -9,14 +9,41 @@
     <h1>Sida för att testa API</h1>
 
     <script>
-        getData();
+        let url = "http://127.0.0.1:3000/api/work_experiences";
 
+        getData();
+        createWorkExperience();
+
+        // GET-anrop
         async function getData() {
-            const response = await fetch("http://127.0.0.1:3000/api/work_experiences")
+            const response = await fetch(url);
 
             const data = await response.json();
 
             console.table(data);
+        }
+
+        // POST-anrop
+        async function createWorkExperience(companyname, jobtitle, location, startdate, enddate) {
+
+            let work = {
+                companyname: companyname,
+                jobtitle: jobtitle,
+                location: location,
+                startdate: startdate,
+                enddate: enddate
+            }
+
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "content-type": "Application/json"
+                },
+                body: JSON.stringify(work)
+            });
+
+            const data = await response.json();
+            console.log(data);
         }
     </script>
 </body>
