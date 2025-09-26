@@ -45,6 +45,27 @@
             const data = await response.json();
             console.log(data);
         }
+
+        // PUT-anrop
+        async function updateWorkExperience(id, companyname, jobtitle, location, startdate, enddate) {
+            let work = {
+                companyname: companyname,
+                jobtitle: jobtitle,
+                location: location,
+                startdate: startdate,
+                enddate: enddate
+            }
+            const response = await fetch('${url}/${id}', {
+                method: "PUT",
+                headers: {
+                    "content-type": "Application/json"
+                },
+                body: JSON.stringify(work)
+            });
+
+            const data = await response.json();
+            console.log(data);
+            }
     </script>
 </body>
 </html>
