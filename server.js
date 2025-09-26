@@ -90,14 +90,14 @@ app.post("/api/work_experiences", (req, res) => {
         }
 
         console.log("Fråga skapad: " + results);
-            // Objekt
-    let work = {
-        companyname: companyname,
-        jobtitle: jobtitle,
-        location: location,
-        startdate: startdate,
-        enddate: enddate
-    }
+        // Objekt
+        let work = {
+            companyname: companyname,
+            jobtitle: jobtitle,
+            location: location,
+            startdate: startdate,
+            enddate: enddate
+        }
 
     res.json({message: "Work experiences added", work}); // Skicka med objekt om korrekt skickad data
     });
