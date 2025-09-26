@@ -11,21 +11,25 @@
     <script>
         let url = "http://127.0.0.1:3000/api/work_experiences";
 
-        getData();
-        createWorkExperience();
+        // Körs direkt sidan laddas
+        getData(); // Hämta alla poster
+        createWorkExperience(); // Skicka en ny post
 
         // GET-anrop
         async function getData() {
+            // Skicka GET-request till servern
             const response = await fetch(url);
 
+            // Omavndla svaret
             const data = await response.json();
 
+            // Skriv ut datan i tabellformat i konsollen
             console.table(data);
         }
 
         // POST-anrop
         async function createWorkExperience(companyname, jobtitle, location, startdate, enddate) {
-
+            // Objekt
             let work = {
                 companyname: companyname,
                 jobtitle: jobtitle,
@@ -33,7 +37,7 @@
                 startdate: startdate,
                 enddate: enddate
             }
-
+            // Skicka POST-request till servern
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
@@ -48,6 +52,7 @@
 
         // PUT-anrop
         async function updateWorkExperience(id, companyname, jobtitle, location, startdate, enddate) {
+            // Skapa nytt objekt med uppdaterade värden
             let work = {
                 companyname: companyname,
                 jobtitle: jobtitle,
@@ -55,7 +60,7 @@
                 startdate: startdate,
                 enddate: enddate
             }
-            const response = await fetch('${url}/${id}', {
+            const response = await fetch(`${url}/${id}`, {
                 method: "PUT",
                 headers: {
                     "content-type": "Application/json"
@@ -69,7 +74,7 @@
 
             // DELETE-anrop
             async function deleteWorkExperience(id) {
-                const response = await fetch('${url}/${id}', {
+                const response = await fetch(`${url}/${id}`, {
                     method: "DELETE"
                 });
 
