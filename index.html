@@ -66,6 +66,16 @@
             const data = await response.json();
             console.log(data);
             }
+
+            // DELETE-anrop
+            async function deleteWorkExperience(id) {
+                const response = await fetch('${url}/${id}', {
+                    method: "DELETE"
+                });
+
+                const data = await response.json();
+                console.log(data);
+            }
     </script>
 </body>
 </html>
