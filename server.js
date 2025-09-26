@@ -135,6 +135,7 @@ app.delete("/api/work_experiences/:id", (req, res) => {
         }
         if (results.affectedRows === 0) {
             res.status(404).json({message: 'No work experience found with id ${id}'});
+            return;
         }
         res.json({message: "Work experiences deleted: " + req.params.id});
     });
