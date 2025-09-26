@@ -126,7 +126,18 @@ app.put("/api/work_experiences/:id", (req, res) => {
 
 // Radera
 app.delete("/api/work_experiences/:id", (req, res) => {
-    res.json({message: "Work experiences deleted: " + req.params.id});
+    const {id} = req.params;
+
+    connection.query("DELETE FROM works WHERE id=?", [id], (err, results) => {
+        if (err) {
+            res.status(500).json({error: "Something went wrong: " + err});
+            return;
+        }
+        if (results.affectedRows === 0) {
+            res.status(404).json({message: 'No work experience found with id ${id}'});
+        }
+        res.json({message: "Work experiences deleted: " + req.params.id});
+    });
 });
 
 app.listen(port, () => {
