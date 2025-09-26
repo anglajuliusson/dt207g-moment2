@@ -105,7 +105,23 @@ app.post("/api/work_experiences", (req, res) => {
 
 // Uppdatera
 app.put("/api/work_experiences/:id", (req, res) => {
-    res.json({message: "Work experiences updated: " + req.params.id});
+    const {id} = req.params;
+    const {companyname, jobtitle, location, startdate, enddate} = req.body;
+
+    connection.query("UPDATE works SET companyname=?, jobtitle=?, location=?, startdate=?, enddate=?",
+        [companyname, jobtitle, location, startdate, enddate, id],
+        (err, results) => {
+            if (err) {
+                res.status(500),json({error: "Something went wrong: " + err});
+                return;
+            }
+            if (results.affectedRows === 0) {
+                res.status(404).json({message: 'No work experence found whit id ${id}'});
+                return;
+            }
+            res.json({message: "Work experiences updated: " + req.params.id});
+        }
+    );
 });
 
 // Radera
