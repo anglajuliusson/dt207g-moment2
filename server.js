@@ -30,7 +30,7 @@ app.use(express.json()); // Sidan ska kunna ta emot JSON-data
 app.get("/api", (req, res) => {
     res.json({message: "Welcome to my API"});
 });
-
+// Hämta alla poster från tabellen works
 app.get("/api/work_experiences", (req, res) => {
     
     // Get work experinces
@@ -66,7 +66,7 @@ app.post("/api/work_experiences", (req, res) => {
 
         }
     };
-
+    // Kontrollera att alla fält är ifyllda
     if ( !companyname || !jobtitle || !location || !startdate || !enddate ) { // Kontroll att allt skickas med
         // error messages
         errors.message = "Companyname, jobtitle, location, startdate and enddate not included";
@@ -108,7 +108,8 @@ app.put("/api/work_experiences/:id", (req, res) => {
     const {id} = req.params;
     const {companyname, jobtitle, location, startdate, enddate} = req.body;
 
-    connection.query("UPDATE works SET companyname=?, jobtitle=?, location=?, startdate=?, enddate=?",
+    // SQL-fråga för att uppdatera specifik rad
+    connection.query("UPDATE works SET id=?, companyname=?, jobtitle=?, location=?, startdate=?, enddate=?",
         [companyname, jobtitle, location, startdate, enddate, id],
         (err, results) => {
             if (err) {
@@ -116,9 +117,11 @@ app.put("/api/work_experiences/:id", (req, res) => {
                 return;
             }
             if (results.affectedRows === 0) {
-                res.status(404).json({message: 'No work experence found whit id ${id}'});
+                // Om ingen rad matchade id:t
+                res.status(404).json({message: `No work experence found whit id ${id}`});
                 return;
             }
+            // Bekräftelse på uppdatering
             res.json({message: "Work experiences updated: " + req.params.id});
         }
     );
@@ -128,15 +131,18 @@ app.put("/api/work_experiences/:id", (req, res) => {
 app.delete("/api/work_experiences/:id", (req, res) => {
     const {id} = req.params;
 
+    // SQL-fråga för att radera specifik rad
     connection.query("DELETE FROM works WHERE id=?", [id], (err, results) => {
         if (err) {
             res.status(500).json({error: "Something went wrong: " + err});
             return;
         }
         if (results.affectedRows === 0) {
-            res.status(404).json({message: 'No work experience found with id ${id}'});
+            // Om ingen rad matchade id:t
+            res.status(404).json({message: `No work experience found with id ${id}`});
             return;
         }
+        // Bekräftelse på borttagning
         res.json({message: "Work experiences deleted: " + req.params.id});
     });
 });
