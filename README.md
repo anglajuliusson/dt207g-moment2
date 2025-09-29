@@ -21,6 +21,7 @@ Nedan finns beskrivet hur man når APIet på olika vis:
 |DELETE|/work_experience/:id|Raderar en kurs med angivet ID.|
 
 Ett kurs-objekt returneras/skickas som JSON med följande struktur:
+```json
 {
 "companyname": "Hotell Laponia",
 "jobtitle": "Receptionist",
